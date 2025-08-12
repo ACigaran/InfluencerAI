@@ -6,6 +6,8 @@ import sqlite3
 # El logger se define UNA VEZ para todo el archivo.
 logger = logging.getLogger(__name__)
 
+DB_PATH = '/var/data/db.db'
+
 # --- FUNCIÓN 1 ---
 def setup_database():
     """Configura las tablas de la base de datos si no existen."""
@@ -13,7 +15,7 @@ def setup_database():
     try:
         # Asumiendo que db.db está en la carpeta raíz 'InfluencerAI'
         # Si está en 'datos', la ruta sería 'datos/db.db'
-        conn = sqlite3.connect('db.db')
+        conn = sqlite3.connect(DB_PATH)
         cursor = conn.cursor()
 
         cursor.execute('''
@@ -55,7 +57,7 @@ def log_database_status():
 
     try:
         # La ruta debe ser la misma que en setup_database()
-        conn = sqlite3.connect('db.db')
+        conn = sqlite3.connect(DB_PATH)
         conn.row_factory = sqlite3.Row
         cursor = conn.cursor()
 
